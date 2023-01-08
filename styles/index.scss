@@ -1,0 +1,61 @@
+$duration-of-an-animation: 0.5s;
+$ratio-for-card: 1.3369;
+
+.cards-deck {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.card {
+  width: 6vw;
+  height: 6vw * $ratio-for-card;
+  min-width: 50px;
+  min-height: 68px;
+  > img {
+    width: inherit;
+    min-width: inherit;
+    min-height: inherit;
+  }
+  &:hover > img {
+    animation: rotate-back-side $duration-of-an-animation ease-in 1;
+    animation-fill-mode: forwards;
+  }
+  &:hover > .card__front {
+    animation: rotate-front-side $duration-of-an-animation ease-in 1;
+    animation-fill-mode: forwards;
+    animation-delay: $duration-of-an-animation;
+  }
+}
+
+.card__front {
+  max-width: 100%;
+  max-height: 100%;
+  position: relative;
+  bottom: 100%;
+  transform: rotateY(90deg);
+}
+
+@keyframes rotate-back-side {
+  0% {
+    transform: rotateY(0deg);
+  }
+  50% {
+    transform: rotateY(45deg);
+  }
+  100% {
+    transform: rotateY(90deg);
+  }
+}
+
+@keyframes rotate-front-side {
+  0% {
+    transform: rotateY(90deg);
+  }
+  50% {
+    transform: rotateY(45deg);
+  }
+  100% {
+    transform: rotateY(0deg);
+  }
+}
